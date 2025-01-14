@@ -15,6 +15,7 @@ public class Example{
 	public static String userName="";
 	public static String birthDay="";
 	public static String comapnyName="";
+	public static double salary=0;
 	
 	
 	//Array Declorations
@@ -24,6 +25,7 @@ public class Example{
 	public static String [] userNameArray=new String[0];
 	public static String [] birthDayArray=new String[0];
 	public static String [] comapnyNameArray=new String[0];
+	public static double [] salaryArray=new double[0];
 	
 	
 	//method for home page
@@ -61,27 +63,37 @@ System.out.println("[1] ADD Contacts\n\n[2] UPDATE Contacts\n\n[3] DELETE Contac
 System.out.print("\n\nEnter Oprion --> ");
 userInput=sc.nextInt();
 
-switch(userInput){
+	L1:while(true){
+		switch(userInput){
 	
 	case 1->{
 		
 			addContacts();
+			break L1;
 		}
 	case 2 ->{
 			updateContacts();
+			break L1;
+		}	
+		
+	case 3 ->{
+			deleteContacts();
+			break L1;
 		}	
 		
 	default ->{
 				HomePage();
+				break L1;
 		}	
 	
 	
 	
 	}
+		}
 
 }
 
-//add contats
+//----------------------add contact main function---------------//
 
 public static void addContacts(){
 	
@@ -95,7 +107,7 @@ public static void addContacts(){
 		
 		CustomerId=generateCustomerID();
 	System.out.println("\nCustomer id : "+CustomerId);
-	System.out.print("\nEnter Name : ");
+	System.out.print("\n Enter Name : ");
 	userName=sc.next();
 	L2 :while(true){
 		
@@ -123,6 +135,24 @@ public static void addContacts(){
 					}
 			
 			}
+		L5:	
+			while(true){
+				
+			System.out.print("\nEnter Salary : ");
+			salary=sc.nextDouble();
+			
+			if(salary>=0){
+				break L5;
+				
+				}else{
+					System.out.println("\n Please check the value..!");
+					continue L5;
+					
+					}
+				
+				}
+			
+			
 			L4:while(true){
 				
 				System.out.print("\nEnter Company Name : ");
@@ -133,7 +163,7 @@ public static void addContacts(){
 					
 					}else{
 						
-						System.out.println("You Must Complete This field....!");
+						System.out.println("\nYou Must Complete This field....!");
 						continue L4;
 						}
 				
@@ -146,13 +176,16 @@ public static void addContacts(){
 				birthDayArray[birthDayArray.length-1]=birthDay;
 				comapnyNameArray[comapnyNameArray.length-1]=comapnyName;
 				userNameArray[userNameArray.length-1]=userName;
+				salaryArray[salaryArray.length-1]=salary;
 				
 				System.out.println("\n\t\t\tContact has been added Successfully...!");
 				
+				L5:
+				while(true){
 				System.out.print("\nDo you want to add annother Data.?(y/n) : ");
 				char choice=sc.next().toUpperCase().charAt(0);
 				
-				L5:while(true){
+				
 					
 					if(choice=='Y'){
 						continue L1;
@@ -160,6 +193,8 @@ public static void addContacts(){
 						}else if(choice=='N'){
 							
 							HomePage();
+							break L1;
+							
 							}else{
 								continue L5;
 								
@@ -242,6 +277,7 @@ public static void extendArrays(){
 	 String [] TempuserNameArray=new String[customerIdArray.length+1];
 	 String [] TempbirthDayArray=new String[customerIdArray.length+1];
 	 String [] TempcomapnyNameArray=new String[customerIdArray.length+1];
+	 double [] TempsalaryArray=new double[salaryArray.length+1];
 	 
 	 for(int i=0;i<customerIdArray.length;i++){
 		 TempcustomerIdArray[i]=customerIdArray[i];
@@ -249,6 +285,7 @@ public static void extendArrays(){
 		 TempuserNameArray[i]=userNameArray[i];
 		 TempbirthDayArray[i]=birthDayArray[i];
 		 TempcomapnyNameArray[i]=comapnyNameArray[i];
+		 TempsalaryArray[i]=salaryArray[i];
 		 
 		 }
 		 
@@ -257,6 +294,7 @@ public static void extendArrays(){
 		 phoneNumberArray=TempphoneNumberArray;
 		 userNameArray=TempuserNameArray;
 		 comapnyNameArray=TempcomapnyNameArray;
+		 salaryArray=TempsalaryArray;
 		 
 		
 	
@@ -268,12 +306,562 @@ public static void extendArrays(){
 
 public static void updateContacts(){
 	
+
+	L1:
+	while(true){
+	System.out.println("\n\n\n-----------------------------------------------------------");
+	System.out.println("|                     UPDATE CONTACT                        |");
+	System.out.println("-------------------------------------------------------------\n");
+	
+	System.out.print("Enter phone number or name : ");
+	String input=sc.next();
+	
+		int numberLength=input.length();
+		char firsNumber=input.charAt(0);
+		
+		if(numberLength==10 && firsNumber=='0'){
+			
+			printUsingNumber(input);
+			break L1;
+			
+			}else{
+				if(checkNotNull(input)){
+					printUsingName(input);
+					break L1;
+					}
+				
+				
+				}
+	
+		}
+	
+	
+	}
+	
+//print using name
+
+public static void printUsingName(String name){
+	
+	int index=searchCustomerByname(name);
+    if(index!=-1){
+		
+		System.out.println("\n ID                  : "+customerIdArray[index]);
+		System.out.println("\nName                 : "+userNameArray[index]);
+		System.out.println("\nPhone Number         : "+phoneNumberArray[index]);
+		System.out.println("\nCompany Name         : "+comapnyNameArray[index]);
+		System.out.println("\nSalary               : "+salaryArray[index]);
+		System.out.println("\nB'Day(YYYY-MM-DD)    : "+birthDayArray[index]);
+		
+			askFunction(index);
+			
+		
+		}else{
+			L1:	while(true){
+			
+			System.out.println("There Is no Result for this name..!\n\n");
+			System.out.print("Do you want to Search Again(y/n) : ");
+			
+			char choice=sc.next().toUpperCase().charAt(0);
+			
+			if(choice=='Y'){
+				updateContacts();
+				break;
+				}else if(choice=='N'){
+					HomePage();
+					break;
+					}else{
+						continue L1;
+						}
+			
+			
+			}
+			
+			}
+		
+	
+	
+	
+	}
+	
+//Function to Ask what they want to update
+
+	public static void askFunction(int index){
+		
+		System.out.println("\n\n\nWhat Do You Want to Update ...! \n\n\n\n\n \t\t[1]Name\n\n\t\t[2]Phone Number\n\n\t\t[3]Company Name\n\n\t\t[4]Salary\n\n\t\t");
+		System.out.print("\n\n Enter an option to continue ->  ");
+		userInput=sc.nextInt();
+		
+			L1:while(true){
+				
+						switch(userInput){
+			
+			case 1->{
+						updateName(index);
+						break L1;
+						
+				}
+			case 2 ->{
+						updatePhoneNumber(index);
+						break L1;
+				  }	
+			
+			case 3 ->{
+						updateCompanyName(index);
+						break L1;
+				  }	
+			
+			case 4 ->{
+						updateSalary(index);
+						break L1;
+				  }	
+			default ->{
+						System.out.println("\n\nPlease Enter Valid Input...!\n\n");
+						continue L1;
+					}	  
+			
+			
+			}
+				
+				
+				}
+		
+		}
+		
+//----------------function to updatesingle detail------------
+		
+public static void updateName(int index){
+	
+	System.out.print("\n\nEnter New Name : ");
+	String uInput=sc.next();
+	
+	userNameArray[index]=uInput;
+	
+	System.out.println("\n\n Updated Succsessfullly");
+	
+	while(true){
+		System.out.print("\n\nDo you want to Update another contact(y/n) : ");
+		char choice=sc.next().toUpperCase().charAt(0);
+		
+		if(choice=='Y'){
+			updateContacts();
+			break;
+			
+			}else if(choice=='N'){
+				HomePage();
+				break;
+				
+				}else{
+					continue;
+					}
+		
+		}
+	
+	}
+public static void updatePhoneNumber(int index){
+	
+	System.out.print("\n\nEnter New Phone number : ");
+	String uInput=sc.next();
+	
+	phoneNumberArray[index]=uInput;
+	
+	System.out.println("\n\n Updated Succsessfullly");
+	
+	while(true){
+		System.out.print("\n\nDo you want to Update another contact(y/n) : ");
+		char choice=sc.next().toUpperCase().charAt(0);
+		
+		if(choice=='Y'){
+			updateContacts();
+			break;
+			
+			}else if(choice=='N'){
+				HomePage();
+				break;
+				
+				}else{
+					continue;
+					}
+		
+		}
+	
+	
+	}
+public static void updateCompanyName(int index){
+	
+	System.out.print("\n\nEnter New Name : ");
+	String uInput=sc.next();
+	
+	comapnyNameArray[index]=uInput;
+	
+	System.out.println("\n\n Updated Succsessfullly");
+	
+	while(true){
+		System.out.print("\n\nDo you want to Update another contact(y/n) : ");
+		char choice=sc.next().toUpperCase().charAt(0);
+		
+		if(choice=='Y'){
+			updateContacts();
+			break;
+			
+			}else if(choice=='N'){
+				HomePage();
+				break;
+				
+				}else{
+					continue;
+					}
+		
+		}
+	
+	
+	}
+public static void updateSalary(int index){
+	
+	System.out.print("\n\nEnter New Salary : ");
+	double uInput=sc.nextDouble();
+	
+	salaryArray[index]=uInput;
+	
+	System.out.println("\n\n Updated Succsessfullly");
+	
+	while(true){
+		System.out.print("\n\nDo you want to Update another contact(y/n) : ");
+		char choice=sc.next().toUpperCase().charAt(0);
+		
+		if(choice=='Y'){
+			updateContacts();
+			break;
+			
+			}else if(choice=='N'){
+				HomePage();
+				break;
+				
+				}else{
+					continue;
+					}
+		
+		}
+	
+	}
+		
+	
+//search customer by name
+
+public static int searchCustomerByname(String name){
+	
+	for(int i=0;i<userNameArray.length;i++){
+		if(userNameArray[i].equals(name)){
+			return i;
+			}
+		
+		}
+		return -1;
+	
+	
+	}	
+	
+
+//print  using number
+
+public static void printUsingNumber(String pNum){
+	
+    int index=searchCustomerindex(pNum);
+	
+	if(index!=-1){
+		
+		System.out.println("\n ID                  : "+customerIdArray[index]);
+		System.out.println("\nName                 : "+userNameArray[index]);
+		System.out.println("\nPhone Number         : "+phoneNumberArray[index]);
+		System.out.println("\nCompany Name         : "+comapnyNameArray[index]);
+		System.out.println("\nSalary               : "+salaryArray[index]);
+		System.out.println("\nB'Day(YYYY-MM-DD)    : "+birthDayArray[index]);
+		
+		
+		
+		
+		}else{
+						L1:	while(true){
+			
+			System.out.println("There Is no Result for this name..!\n\n");
+			System.out.print("Do you want to Delete Another Contact(y/n) : ");
+			
+			char choice=sc.next().toUpperCase().charAt(0);
+			
+			if(choice=='Y'){
+				deleteContacts();
+				break;
+				}else if(choice=='N'){
+					HomePage();
+					break;
+					}else{
+						continue L1;
+						}
+			
+			
+			}
+			
+			
+			}
+	
+	}
+
+//searchUsing phone number method
+
+public static int searchCustomerindex(String pNum){
+	
+	for(int i=0;i<phoneNumberArray.length;i++){
+		if(phoneNumberArray[i].equals(pNum)){
+			return i;
+			}
+		
+		}
+		return -1;
 	
 	}
 
 
+//-------------------------------main function to delete contacts---------------------------------
 
+public static void deleteContacts(){
 	
+	L1:
+	while(true){
+	System.out.println("\n\n-------------------------------------------------------");
+	System.out.println("|                   Delete Contacts                   |");
+	System.out.println("------------------------------------------------------\n\n");
+	
+	System.out.print("Enter phone number or name : ");
+	String input=sc.next();
+	
+		int numberLength=input.length();
+		char firsNumber=input.charAt(0);
+		
+		if(numberLength==10 && firsNumber=='0'){
+			
+			printUsingNumber2(input);
+			break L1;
+			
+			}else{
+				if(checkNotNull(input)){
+					printUsingName2(input);
+					break L1;
+					}
+				
+				
+				}
+	
+		}
+	
+	}
+	
+//delete customer function print details using name
+
+public static void printUsingName2(String name){
+	
+	int index=searchCustomerByname(name);
+    if(index!=-1){
+		
+		System.out.println("\n ID                  : "+customerIdArray[index]);
+		System.out.println("\nName                 : "+userNameArray[index]);
+		System.out.println("\nPhone Number         : "+phoneNumberArray[index]);
+		System.out.println("\nCompany Name         : "+comapnyNameArray[index]);
+		System.out.println("\nSalary               : "+salaryArray[index]);
+		System.out.println("\nB'Day(YYYY-MM-DD)    : "+birthDayArray[index]);
+		
+
+		
+		}else{
+			L1:	while(true){
+			
+			System.out.println("\n\nThere Is no Result for this name..!\n\n");
+			System.out.print("\n\nDo you want to Delete another contact (y/n) : ");
+			
+			char choice=sc.next().toUpperCase().charAt(0);
+			
+			if(choice=='Y'){
+				deleteContacts();
+				break;
+				}else if(choice=='N'){
+					HomePage();
+					break;
+					}else{
+						continue L1;
+						}
+			
+			
+			}
+			
+			}
+			
+			L2 : while(true){
+				
+				System.out.print("\n\nDo you want to delete this contact (y/n) : ");
+				
+				char choice=sc.next().toUpperCase().charAt(0);
+				
+				if(choice=='Y'){
+					deleteCustomerPerment(index);
+					break L2;
+					}else if(choice=='N'){
+						HomePage();
+						break L2;
+						
+						}else{
+							
+							continue L2;
+							}
+				
+				}
+				L3 :while(true){
+					System.out.print("\n\nDo you want to delete another contact (y/n) : ");
+				
+				char choice=sc.next().toUpperCase().charAt(0);
+				
+				if(choice=='Y'){
+					deleteContacts();
+					break L3;
+					}else if(choice=='N'){
+						HomePage();
+						break L3;
+						
+						}else{
+							
+							continue L3;
+							}
+					}
+		
+	
+	
+	
+	}
+
+
+//--------delete customer function print details using number-----
+
+
+public static void printUsingNumber2(String pNum){
+	
+    int index=searchCustomerindex(pNum);
+	
+	if(index!=-1){
+		
+		System.out.println("\n ID                  : "+customerIdArray[index]);
+		System.out.println("\nName                 : "+userNameArray[index]);
+		System.out.println("\nPhone Number         : "+phoneNumberArray[index]);
+		System.out.println("\nCompany Name         : "+comapnyNameArray[index]);
+		System.out.println("\nSalary               : "+salaryArray[index]);
+		System.out.println("\nB'Day(YYYY-MM-DD)    : "+birthDayArray[index]);
+		
+		
+		
+		
+		}else{
+			L1:	while(true){
+			
+			System.out.println("\n\nThere Is no Result for this number..!\n\n");
+			System.out.print("\n\nDo you want to Delete another contact(y/n) : ");
+			
+			char choice=sc.next().toUpperCase().charAt(0);
+			
+			if(choice=='Y'){
+				deleteContacts();
+				break L1;
+				}else if(choice=='N'){
+					HomePage();
+					break L1;
+					}else{
+						continue L1;
+						}
+			
+			
+			}
+			
+			
+			}
+			
+			L2 : while(true){
+				
+				System.out.print("\n\nDo you want to delete this contact (y/n) : ");
+				
+				char choice=sc.next().toUpperCase().charAt(0);
+				
+				if(choice=='Y'){
+					deleteCustomerPerment(index);
+					break L2;
+					}else if(choice=='N'){
+						HomePage();
+						break L2;
+						
+						}else{
+							
+							continue L2;
+							}
+				
+				}
+				L3 :while(true){
+					System.out.print("\n\nDo you want to delete another contact (y/n) : ");
+				
+				char choice=sc.next().toUpperCase().charAt(0);
+				
+				if(choice=='Y'){
+					deleteContacts();
+					break L3;
+					}else if(choice=='N'){
+						HomePage();
+						break L3;
+						
+						}else{
+							
+							continue L3;
+							}
+					}
+	
+	}
+
+//function to delete customerPerment
+
+public static void deleteCustomerPerment(int index){
+	
+	 String [] TempcustomerIdArray=new String[customerIdArray.length-1];
+	 String [] TempphoneNumberArray=new String[customerIdArray.length-1];
+	 String [] TempuserNameArray=new String[customerIdArray.length-1];
+	 String [] TempbirthDayArray=new String[customerIdArray.length-1];
+	 String [] TempcomapnyNameArray=new String[customerIdArray.length-1];
+	 double [] TempsalaryArray=new double[salaryArray.length-1];
+	 
+	 for(int i=0;i<index;i++){
+		 TempcustomerIdArray[i]=customerIdArray[i];
+		 TempphoneNumberArray[i]=phoneNumberArray[i];
+		 TempuserNameArray[i]=userNameArray[i];
+		 TempbirthDayArray[i]=birthDayArray[i];
+		 TempcomapnyNameArray[i]=comapnyNameArray[i];
+		 TempsalaryArray[i]=salaryArray[i];
+		 
+		 }
+		 
+		 for(int i=index;i<TempcustomerIdArray.length;i++){
+			
+			TempcustomerIdArray[i]=customerIdArray[i];
+		    TempphoneNumberArray[i]=phoneNumberArray[i];
+		    TempuserNameArray[i]=userNameArray[i];
+		    TempbirthDayArray[i]=birthDayArray[i];
+		    TempcomapnyNameArray[i]=comapnyNameArray[i];
+		    TempsalaryArray[i]=salaryArray[i];
+			
+			 }
+			 customerIdArray=TempcustomerIdArray;
+			 phoneNumberArray=TempphoneNumberArray;
+			 userNameArray=TempuserNameArray;
+			 birthDayArray=TempbirthDayArray;
+			 comapnyNameArray=TempcomapnyNameArray;
+			 salaryArray=TempsalaryArray;
+
+
+		System.out.println("\n\n\t\tContact Deleted Successfully...!\n\n");
+	
+	}
+
+
 	public static void main(String [] args){
 		
 		HomePage();
