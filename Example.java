@@ -181,7 +181,7 @@ public static void printUsingNumber3(String pNum){
 					HomePage();
 					break;
 					}else{
-						clearLines(5);
+						clearLines(3);
 						continue L2;
 						}
 			
@@ -206,7 +206,7 @@ public static void printUsingNumber3(String pNum){
 					HomePage();
 					break;
 					}else{
-						clearLines(5);
+						clearLines(3);
 						continue L1;
 						}
 			
@@ -252,7 +252,7 @@ public static void printUsingName3(String name){
 					HomePage();
 					break;
 					}else{
-						clearLines(5);
+						clearLines(3);
 						continue L2;
 						}
 			
@@ -277,7 +277,7 @@ public static void printUsingName3(String name){
 					HomePage();
 					break;
 					}else{
-						clearLines(5);
+						clearLines(3);
 						continue L1;
 						}
 			
@@ -317,7 +317,7 @@ public static void addContacts(){
 		
 		if(!phoneNumberValidation(phoneNumber)){
 			System.out.println("\nPlease Enter valid Phone number...!\n");
-			clearLines(3);
+			//clearLines(1);
 			continue L2;
 			}else{
 				break L2;
@@ -333,7 +333,7 @@ public static void addContacts(){
 				}else{
 					
 					System.out.println("\nPlease Enter Valid Birth Day..!\n");
-					clearLines(3);
+					//clearLines(3);
 					continue L3;
 					}
 			
@@ -349,7 +349,7 @@ public static void addContacts(){
 				
 				}else{
 					System.out.println("\n Please check the value..!");
-					clearLines(3);
+					//clearLines(3);
 					continue L5;
 					
 					}
@@ -368,6 +368,7 @@ public static void addContacts(){
 					}else{
 						
 						System.out.println("\nYou Must Complete This field....!");
+						//clearLines(3);
 						continue L4;
 						}
 				
@@ -392,10 +393,11 @@ public static void addContacts(){
 				
 					
 					if(choice=='Y'){
+						clearConsole();
 						continue L1;
 						
 						}else if(choice=='N'){
-							
+							clearConsole();
 							HomePage();
 							break L1;
 							
@@ -568,12 +570,15 @@ public static void printUsingName(String name){
 			char choice=sc.next().toUpperCase().charAt(0);
 			
 			if(choice=='Y'){
+				clearConsole();
 				updateContacts();
 				break;
 				}else if(choice=='N'){
+					clearConsole();
 					HomePage();
 					break;
 					}else{
+						//clearLines(3);
 						continue L1;
 						}
 			
@@ -647,10 +652,12 @@ public static void updateName(int index){
 		char choice=sc.next().toUpperCase().charAt(0);
 		
 		if(choice=='Y'){
+			clearConsole();
 			updateContacts();
 			break;
 			
 			}else if(choice=='N'){
+				clearConsole();
 				HomePage();
 				break;
 				
@@ -675,10 +682,12 @@ public static void updatePhoneNumber(int index){
 		char choice=sc.next().toUpperCase().charAt(0);
 		
 		if(choice=='Y'){
+			clearConsole();
 			updateContacts();
 			break;
 			
 			}else if(choice=='N'){
+				clearConsole();
 				HomePage();
 				break;
 				
@@ -704,10 +713,12 @@ public static void updateCompanyName(int index){
 		char choice=sc.next().toUpperCase().charAt(0);
 		
 		if(choice=='Y'){
+			clearConsole();
 			updateContacts();
 			break;
 			
 			}else if(choice=='N'){
+				clearConsole();
 				HomePage();
 				break;
 				
@@ -733,10 +744,12 @@ public static void updateSalary(int index){
 		char choice=sc.next().toUpperCase().charAt(0);
 		
 		if(choice=='Y'){
+			clearConsole();
 			updateContacts();
 			break;
 			
 			}else if(choice=='N'){
+				clearConsole();
 				HomePage();
 				break;
 				
@@ -792,9 +805,11 @@ public static void printUsingNumber(String pNum){
 			char choice=sc.next().toUpperCase().charAt(0);
 			
 			if(choice=='Y'){
+				clearConsole();
 				deleteContacts();
 				break;
 				}else if(choice=='N'){
+					clearConsole();
 					HomePage();
 					break;
 					}else{
@@ -883,9 +898,11 @@ public static void printUsingName2(String name){
 			char choice=sc.next().toUpperCase().charAt(0);
 			
 			if(choice=='Y'){
+				clearConsole();
 				deleteContacts();
 				break;
 				}else if(choice=='N'){
+					clearConsole();
 					HomePage();
 					break;
 					}else{
@@ -904,9 +921,11 @@ public static void printUsingName2(String name){
 				char choice=sc.next().toUpperCase().charAt(0);
 				
 				if(choice=='Y'){
+					clearConsole();
 					deleteCustomerPerment(index);
 					break L2;
 					}else if(choice=='N'){
+						clearConsole();
 						HomePage();
 						break L2;
 						
@@ -922,9 +941,11 @@ public static void printUsingName2(String name){
 				char choice=sc.next().toUpperCase().charAt(0);
 				
 				if(choice=='Y'){
+					clearConsole();
 					deleteContacts();
 					break L3;
 					}else if(choice=='N'){
+						clearConsole();
 						HomePage();
 						break L3;
 						
@@ -968,9 +989,11 @@ public static void printUsingNumber2(String pNum){
 			char choice=sc.next().toUpperCase().charAt(0);
 			
 			if(choice=='Y'){
+				clearConsole();
 				deleteContacts();
 				break L1;
 				}else if(choice=='N'){
+					clearConsole();
 					HomePage();
 					break L1;
 					}else{
@@ -990,9 +1013,11 @@ public static void printUsingNumber2(String pNum){
 				char choice=sc.next().toUpperCase().charAt(0);
 				
 				if(choice=='Y'){
+					clearConsole();
 					deleteCustomerPerment(index);
 					break L2;
 					}else if(choice=='N'){
+						clearConsole();
 						HomePage();
 						break L2;
 						
@@ -1008,14 +1033,16 @@ public static void printUsingNumber2(String pNum){
 				char choice=sc.next().toUpperCase().charAt(0);
 				
 				if(choice=='Y'){
+					clearConsole();
 					deleteContacts();
 					break L3;
 					}else if(choice=='N'){
+						clearConsole();
 						HomePage();
 						break L3;
 						
 						}else{
-							
+							//clearLines(3);
 							continue L3;
 							}
 					}
@@ -1043,14 +1070,14 @@ public static void deleteCustomerPerment(int index){
 		 
 		 }
 		 
-		 for(int i=index;i<TempcustomerIdArray.length;i++){
+		 for(int i=index;i<TempcustomerIdArray.length-1;i++){
 			
-			TempcustomerIdArray[i]=customerIdArray[i];
-		    TempphoneNumberArray[i]=phoneNumberArray[i];
-		    TempuserNameArray[i]=userNameArray[i];
-		    TempbirthDayArray[i]=birthDayArray[i];
-		    TempcomapnyNameArray[i]=comapnyNameArray[i];
-		    TempsalaryArray[i]=salaryArray[i];
+			TempcustomerIdArray[i]=customerIdArray[i+1];
+		    TempphoneNumberArray[i]=phoneNumberArray[i+1];
+		    TempuserNameArray[i]=userNameArray[i+1];
+		    TempbirthDayArray[i]=birthDayArray[i+1];
+		    TempcomapnyNameArray[i]=comapnyNameArray[i+1];
+		    TempsalaryArray[i]=salaryArray[i+1];
 			
 			 }
 			 customerIdArray=TempcustomerIdArray;
@@ -1062,6 +1089,8 @@ public static void deleteCustomerPerment(int index){
 
 
 		System.out.println("\n\n\t\tContact Deleted Successfully...!\n\n");
+		
+	
 	
 	}
 
@@ -1185,10 +1214,12 @@ public static void sortingByname(){
 		char choice=sc.next().toUpperCase().charAt(0);
 		
 		if(choice=='Y'){
+			clearConsole();
 			HomePage();
 			break L2;
 			
 			}else if(choice =='N'){
+				clearConsole();
 				sortContacts();
 				break L2;
 				
@@ -1269,10 +1300,12 @@ public static void sortingBySalary(){
 		char choice=sc.next().toUpperCase().charAt(0);
 		
 		if(choice=='Y'){
+			clearConsole();
 			HomePage();
 			break L2;
 			
 			}else if(choice =='N'){
+				clearConsole();
 				sortContacts();
 				break L2;
 				
@@ -1367,10 +1400,12 @@ public static void sortingByBirthDay(){
 		char choice=sc.next().toUpperCase().charAt(0);
 		
 		if(choice=='Y'){
+			clearConsole();
 			HomePage();
 			break L2;
 			
 			}else if(choice =='N'){
+				clearConsole();
 				sortContacts();
 				break L2;
 				
